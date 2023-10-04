@@ -1,0 +1,78 @@
+
+
+
+<style>
+    .container-edit {
+        margin: 24px;
+    }
+    .back-to-home {
+        margin-left: 24px;
+    }
+    .back-to-home:hover {
+        text-decoration: none;
+        color: firebrick;
+        font-weight: 800;
+    }
+    .m-left-12 {
+        margin-left: 48px;
+    }
+    .m-left-48 {
+        margin-top: 12px;
+        margin-left: 48px;
+    }
+    .btn-post {
+        padding: 8px 26px;
+        opacity: 1;
+        border: 2px solid #333;
+        border-radius: 12px;
+        background-color:aqua;
+    }
+    .btn-post:hover {
+        color: firebrick;
+        opacity: 0.8;
+        font-weight: 800;
+    }
+    ::selection {
+        background-color: blue;
+        color: white;
+    }
+</style>
+
+<div class="container-edit">
+    <a href="/" class="back-to-home">
+        <i class="fa-solid fa-chevron-left"></i>
+        Return to home
+    </a>
+
+    <div class="row d-flex justify-content-center align-items-center"></div >
+    <div class="m-left-48">
+        <form action="/posts/{{data.id}}/update?_method=PUT" method="POST">
+            <input type="hidden" id="id" name="id" value="{{ data.id }}">
+            <div class="form-group">
+                <label for="title">Post Title:</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" value="{{ data.title }}">
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <input type="text" class="form-control" id="description" name="description" placeholder="Enter Description" value="{{ data.description }}">
+            </div>
+            <div class="form-group">
+                <label for="content">Content:</label>
+                <textarea class="form-control" id="content" name="content" placeholder="Write your Content">{{data.content}}</textarea>
+            </div>
+            <button type="submit" class="btn btn-post">Post</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Highlight all text in the input when clicked
+    document.addEventListener("DOMContentLoaded", function() {
+        var textInputs = document.querySelectorAll("input[type='text'], textarea");
+        for (var i = 0; i < textInputs.length; i++) {
+            textInputs[i].addEventListener("click", function() {
+                this.select();
+            });
+        }
+    });
+</script>

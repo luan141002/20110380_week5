@@ -1,0 +1,109 @@
+<style>
+    .m-l-24 {
+        margin-left: 24px;
+        margin-top: 24px;
+    }
+    .back-to-home {
+        margin: 24px;
+    }
+    .back-to-home:hover {
+        text-decoration-line: none;
+        color: green;
+        font-weight: 700;
+    }
+    .card {
+        margin-bottom: 24px;
+    }
+    .header {
+        margin-left: 24px;
+    }
+    .commnet-body {
+        display: flex;
+        margin-left: 48px;
+    }
+    .comment-form{
+        padding: 24px 24px 12px 12px;
+    }
+    .body{ 
+        margin-left: 24px;
+    }
+    .m-b-0 {
+        margin-bottom: 0;
+    }
+    .form-group {
+        width: 100%;
+    }
+    .form-control {
+        width: 100%; /* Thiết lập chiều ngang là 100% */
+    }
+</style>
+
+<div class="m-l-24">
+
+    <a href="/" class="back-to-home">
+        <i class="fa-solid fa-chevron-left"></i>
+        Return to home
+    </a>
+    <div class="container">
+        <div class="row clearfix d-flex justify-content-center align-items-center">
+            <div class="col-lg-8 col-md-12">
+                <div class="card single_post">
+                    <div class="body">
+                        <h3>Title: {{data.title}}</h3>
+                        <h5>Description: {{data.description}}</h5>
+                        <p>Content: {{{ data.content }}}</p>
+                    </div>
+                </div>
+                {{!-- Comment section --}}
+                <!-- Comment section -->
+                <div class="card">
+                    <div class="header">
+                        <h2>Comments</h2>
+                    </div>
+                    <div class="body commnet-body">
+                        <ul class="comment-reply list-unstyled">
+                            {{#each data.comments}}
+                            <li class="row clearfix">
+                                <div class="icon-box col-md-2 col-4">
+                                    <img class="img-fluid img-thumbnail" src="https://i.pinimg.com/originals/2f/39/cb/2f39cbc5566366d03f7f00c36854f552.gif" alt="Awesome Image">
+                                </div>
+                                <div class="text-box col-md-10 col-8 p-l-0 p-r0">
+                                    <h5 class="m-b-0">Guest</h5>
+                                    <p class="m-b-0">{{this.comment}}</p> <!-- Hiển thị nội dung comment -->
+                                    <p class="m-b-0">Date: {{this.formattedDate}}</p> <!-- Hiển thị ngày/tháng/năm -->
+                                </div>
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+                {{!-- End comment section --}}
+                <div class="card">
+                    <div class="header">
+                        <h2>Leave a reply</h2>
+                        <span>Your email address will not be published</span>
+                    </div>
+                    <div class="body">
+                        <div class="comment-form">
+                            <form class="row clearfix" action="/posts/{{data.id}}/comment" method="POST">
+
+                                <div class="col-sm-12">
+                                    <input type="hidden" id="id" name="id" value="{{ data.id }}">
+                                    <div class="form-group">
+                                        <textarea rows="4" class="form-control no-resize"
+                                            placeholder="Please type what you want..."
+                                            name="comment"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-block btn-primary">SUBMIT</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

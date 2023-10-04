@@ -1,0 +1,91 @@
+ <style>
+    .container {
+        margin: 24px;
+        font-size: 24px;
+    }
+
+    .mb {
+        margin-bottom: 24px;
+    }
+    .back-to-home {
+        background-color: goldenrod;
+        border-radius: 10px;
+        padding: 4px 12px;
+    }
+
+    .back-to-home:hover {
+        text-decoration: none;
+        color: yellow;
+    }
+    .btn-primary {
+        padding: 8px 24px;
+        border-radius: 12px;
+    }
+    .btn-primary:hover {
+        background-color: greenyellow;
+        color: black;   
+        font-weight: 700;
+
+    }
+
+</style>
+
+ <div class="container">
+        <div class="mb">
+            <a href="/" class="back-to-home">
+                <i class="fa-solid fa-chevron-left"></i>
+                Back to Home
+            </a>
+        </div>
+        <div class="mb">
+            <div class="row d-flex justify-content-center align-items-center"></div>
+        </div>
+        <div class="mb">
+            <form id="myForm" action="/posts/add" method="POST">
+                <div class="form-group input-with-placeholder">
+                    <label for="title">Post Title:</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" required>
+                </div>
+                <div class="form-group input-with-placeholder">
+                    <label for="description">Description:</label>
+                    <input type="text" class="form-control" id="description" name="description" placeholder="Enter Description" required>
+                </div>
+                <div class="form-group input-with-placeholder">
+                    <label for="content">Content:</label>
+                    <textarea class="form-control" id="content" name="content" placeholder="Write your Content" required></textarea>
+                </div>
+                <div id="warning-message" class="warning"></div>
+                <button type="submit" class="btn btn-primary">Post</button>
+            </form>
+        </div>
+    </div>
+
+
+<script>
+  
+
+    document.querySelector('form').addEventListener('submit', function(event) {
+        var titleInput = document.getElementById('title');
+        var descriptionInput = document.getElementById('description');
+        var contentInput = document.getElementById('content');
+        var warningMessage = document.getElementById('warning-message');
+
+        if (titleInput.value === '' || descriptionInput.value === '' || contentInput.value === '') {
+            event.preventDefault(); // Ngăn chặn việc submit form
+
+            // Hiển thị cảnh báo
+            warningMessage.textContent = 'Vui lòng nhập đầy đủ thông tin.';
+        } else {
+            // Đã nhập đầy đủ, tiến hành submit form
+            // ...
+            warningMessage.textContent = '';
+            // Initialize CKEditor
+            CKEDITOR.replace('content', {
+                // Configuration options if needed
+            });
+        }
+    });
+
+   
+</script>
+
